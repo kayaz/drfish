@@ -1,0 +1,61 @@
+<div class="title"><h1>Użytkownicy</h1></div>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="widget">
+			<div class="table-header"><form action="" id="filter-form">
+			<label>
+			<span>Szukaj:</span><input type="text" size="30" maxlength="30" value="" id="filter" name="filter" />
+			</label>
+			</form></div>
+			<table width="100%" cellspacing="0" cellpadding="0" class="adm" id="sortable">
+				<thead>
+					<tr>
+					<th width="5%" style="text-align:center">ID</th>
+					<th width="10%">Login</th>
+					<th width="20%">Adres email</th>
+					<th width="20%">Ostatnie logowanie</th>
+					<th width="15%">Adres IP</th>
+					<th width="20%">Typ</th>
+					<th width="10%"></th>
+					</tr>
+				</thead>
+				<tbody class="content">
+			<?php foreach($this->result as $result) : ?>
+			<tr>
+			<td class="center"><?=$this->escape($result->id);?></td>
+			<td><b><?=$this->escape($result->login);?></b></td>
+			<td><?=$this->escape($result->email);?></td>
+			<td><?=$this->escape($result->last);?></td>
+			<td><?=$this->escape($result->ipold);?></td>
+			<td>
+			<?php if($this->escape($result->role) == 'admin'){;?>Administrator<?php } else {?>Sprzedawca<?php }?></td>
+			<td class="right">
+			<a href="<?=$this->baseUrl();?>/admin/uzytkownicy/zmienhaslo/id/<?=$this->escape($result->id);?>/" class="actionBtn tip btnKey" title="Zmień hasło" data-placement="top-right"></a>
+			<a href="<?=$this->baseUrl();?>/admin/uzytkownicy/edytuj/id/<?=$this->escape($result->id);?>/" class="actionBtn tip btnEdit" title="Edytuj" data-placement="top-right"></a>
+			<?php if($result->id <> 1) {;?>
+			<a href="<?=$this->baseUrl();?>/admin/uzytkownicy/usun/id/<?=$this->escape($result->id);?>/" class="actionBtn tip btnDelete confirm" title="Usuń użytkownika"></a> <?php }?>
+			</td>
+			</tr>
+			<?php endforeach; ?>
+				</tbody>
+			</table>
+			<div class="table-footer">
+				<a href="<?=$this->baseUrl();?>/admin/uzytkownicy/nowy/" class="button greyishBtn">Dodaj użytkownika</a>
+			</div>
+		</div>
+	</div>
+</div>
+<?php if(($_REQUEST["message"] == 1)) {?> 
+<script type="text/javascript">
+<!--
+	var noty_id = noty({timeout: 3000, text: 'Hasło zostało zmienione!', type: 'success'});
+//-->
+</script>
+<?php } ?>
+<?php if(($_REQUEST["message"] == 2)) {?> 
+<script type="text/javascript">
+<!--
+	var noty_id = noty({timeout: 3000, text: 'Usunięto użytkownika!', type: 'success'});
+//-->
+</script>
+<?php } ?>

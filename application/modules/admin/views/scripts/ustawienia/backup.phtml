@@ -1,0 +1,22 @@
+<div class="title"><h1>Ustawienia strony - Kopia zapasowa bazy SQL</h1></div>
+<div class="row-fluid">
+	<div class="span12">
+		<ul class="nav nav-tabs none">
+			<li><a href="<?=$this->baseUrl();?>/admin/ustawienia/"><span class="fa i-cog"></span>Główne ustawienia strony</a></li>
+			<li><a href="<?=$this->baseUrl();?>/admin/ustawienia/social/"><span class="fa i-lista"></span>Portale społecznościowe</a></li>
+            <li><a href="<?=$this->baseUrl();?>/admin/ustawienia/mapa/"><span class="fa i-map"></span>Kontakt</a></li>
+			<li class="active"><a href="<?=$this->baseUrl();?>/admin/ustawienia/backup/"><span class="fa i-sql"></span>Kopia bazy</a></li>
+			<li><a href="<?=$this->baseUrl();?>/admin/ustawienia/baner/"><span class="fa i-image"></span>Baner na start</a></li>
+		</ul>
+		<div class="widget">
+		<div class="tab-content">
+			<form id="ustawienia" name="ustawienia" enctype="application/x-www-form-urlencoded" class="mainForm" action="" method="post">
+				<div class="formRow">
+                    Plik z kopią zapasową bazy zostanie zapisany na serwerze w katalogu <b>backup</b></p>
+				</div>
+				<div class="formSubmit" style="text-align:center"><input type="submit" name="submitBackup" id="submit" value="Wykonaj kopię" class="greyishBtn" /></div>
+			</form>
+		</div>
+		</div>
+	</div>
+</div>

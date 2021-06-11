@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <?= $this->header['head']; ?>
+
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	
+<?php if($this->seo_tytul) {?>
+	<title><?= $this->seo_tytul; ?></title>
+<?php } else { ?>
+	<title><?= $this->header['nazwa']; ?><?= $this->strona_tytul; ?></title>
+<?php } ?>
+<?php if($this->seo_opis) {?>
+	<meta name="description" content="<?= $this->seo_opis; ?>">
+<?php } else { ?>
+	<meta name="description" content="<?= $this->header['opis']; ?>">
+<?php } ?>
+<?php if($this->seo_slowa) {?>
+	<meta name="keywords" content="<?= $this->seo_slowa; ?>">
+<?php } else { ?>
+	<meta name="keywords" content="<?= $this->header['klucze']; ?>">
+<?php } ?>
+<?php if($this->header['autor']){?>
+	<meta name="author" content="<?= $this->header['autor']; ?>">
+<?php } ?>
+<?php if($this->nofollow == 1) {?>
+	<meta name="robots" content="noindex, nofollow">
+	<!-- Wyłączone z akcji -->
+<?php } else { ?>
+	<meta name="robots" content="<?= $this->header['robots']; ?>">
+<?php } ?>
+<?php if($this->canonical) {?>
+	<meta name="canonical" content="<?=$this->canonical;?>">
+<?php } ?>
+
+<?php if($this->share == 1) {?>
+	<meta property="og:title" content="<?=$this->share_tytul;?>">
+	<meta property="og:image" content="<?=$this->share_image;?>">
+	<meta property="og:description" content="<?=str_replace('"', '', $this->share_desc);?>">
+	<meta property="og:type" content="article">
+	<meta property="og:image:width" content="600">
+	<meta property="og:image:height" content="315">
+	<meta property="og:url" content="<?=$this->share_url;?>">
+<?php } ?>
+
+	<!-- Wylaczenie numeru tel. -->
+	<meta name="format-detection" content="telephone=no">
+	
+	<!-- Prefetch -->
+	<link rel="dns-prefetch" href="//maps.google.com">
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="<?=$this->cssUrl();?>/bootstrap.css">
+    <link rel="stylesheet" href="<?=$this->cssUrl();?>/styles.css?data=<?=date('is');?>">
+	
+	<!-- jQuery -->
+    <script src="<?=$this->jsUrl(); ?>/jquery.js" charset="utf-8"></script>
+	<script src="<?=$this->jsUrl(); ?>/bootstrap.min.js" charset="utf-8"></script>
+    <script src="<?=$this->jsUrl(); ?>/main.js" charset="utf-8"></script>
+	
+	<?php echo $this->header['head']; ?>
+
+	<?php //getRecaptchaBody(); ?>
+</head>
+<body class="subpage<?php if(Zend_Auth::getInstance()->hasIdentity() && $this->editinline){?> is-admin<?php } ?>">
+<?= $this->header['afterbody']; ?>
+
+	<?=$this->render('partials/header.phtml');?>
+
+    <?php if(!$this->hidepageheader) { ?>
+    <?=$this->render('partials/pageheader.phtml');?>
+    <?php } ?>
+
+    <div id="page" class="<?php if($this->nobottom){?> nobottom <?php } ?><?php if($this->notop){?> notop <?php } ?><?=$this->pageclass;?> <?php if(isset($this->strona->tag)){?><?=$this->strona->tag;?>-pageheader<?php } ?>">
+        <div class="page-content">
+            <?= $this->layout()->content; ?>
+        </div>
+    </div>
+
+	<div class="page-footer">
+	<?=$this->render('partials/footer.phtml');?>
+	</div>
+
+	<div id="cookies"><p><a href="" class="closecookies gradient"><?=$this->translate('tl_zamknij');?></a><?= $this->header['cookies']; ?></p></div>
+
+    <?php if($this->validation) { ?>
+        <script src="<?=$this->jsUrl(); ?>/validation.js" charset="utf-8"></script>
+        <script src="<?=$this->jsUrl(); ?>/pl.js" charset="utf-8"></script>
+    <?php } ?>
+
+    <?php if($this->building) {?>
+        <script src="<?=$this->jsUrl(); ?>/imagemapster.js" charset="utf-8"></script>
+        <script src="<?=$this->jsUrl(); ?>/budynek.js" charset="utf-8"></script>
+    <?php } ?>
+	
+    <?php if($this->buildingi) {?>
+        <script src="<?=$this->jsUrl(); ?>/imagemapster.js" charset="utf-8"></script>
+        <script src="<?=$this->jsUrl(); ?>/budynek-pietra.js?data=<?=date('is');?>" charset="utf-8"></script>
+    <?php } ?>
+
+    <?php if($this->floor){?>
+        <script src="<?=$this->jsUrl(); ?>/imagemapster.js" charset="utf-8"></script>
+        <script src="<?=$this->jsUrl(); ?>/pietro.js" charset="utf-8"></script>
+    <?php } ?>
+
+    <?php if($this->tip) { ?>
+        <script src="<?=$this->jsUrl(); ?>/tip.js" charset="utf-8"></script>
+    <?php } ?>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+        <?php if($this->validation) { ?>
+        $(".validateForm").validationEngine({
+            validateNonVisibleFields: true,
+            updatePromptsPosition:true,
+            promptPosition : "topRight:-128px"
+        });
+        <?php } ?>
+
+        $('#partnerzy .row-carousel').slick({
+            infinite: true,
+            slidesToShow: 7,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+
+        $('.history-carousel').slick({
+            infinite: false,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        });
+
+        $("#inwestycja-nav a.scroll").click(function (e) {
+            e.preventDefault();
+            const section = $(this).attr('href');
+            const aboveHeight = $('#header').outerHeight();
+            const aboveNavHeight = $('#inwestycja-nav').outerHeight();
+
+
+            $('html, body').stop().animate({
+                scrollTop: $(section).offset().top - aboveHeight - aboveNavHeight
+            }, 1500, 'easeInOutExpo');
+            $('body').removeClass("openmenu");
+        });
+
+        $(".col-list").click(function(e) {
+            const url = $(this).attr("data-url");
+            if(url){ window.location = url; }
+        });
+	});
+	$(window).load(function() {
+        <?php if($this->message == 1) {?>
+        const aboveHeight = $('#header').outerHeight();
+        $('html, body').stop().animate({
+            scrollTop: $('#formalert').offset().top-aboveHeight
+        }, 1500, 'easeInOutExpo');
+        <?php } ?>
+
+        <?php if($this->s_action) {?>
+        const hH = $('#header').outerHeight();
+        $('html, body').stop().animate({
+            scrollTop: $('#searchOffer').offset().top-hH+5
+        }, 1500, 'easeInOutExpo');
+        <?php } ?>
+
+        $('#offerList').fadeIn();
+        $('#offerListSpinner').remove();
+
+        $(".inwest-storelist-rooms").each(function() {
+            if ( $(".col-list", this).length === 0 ) {
+                $(this).hide();
+            }
+        });
+
+	});
+	</script>
+
+	<?= $this->header['footer']; ?>
+    <?php if(Zend_Auth::getInstance()->hasIdentity() && $this->editinline){?>
+        <?=$this->render('inline.phtml') ?>
+    <?php } ?>
+</body>
+</html>

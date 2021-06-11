@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title><?= $this->nazwa_strony; ?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">body {background-color: #ffffff}table{border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;}img{display: block; margin: 0; padding: 0; border: none;}</style>
+</head>
+<body style="background-color:#18263e;padding:0;margin:0">
+<table align="center" border="0" cellpadding="0" cellspacing="0" style="margin:0 auto;width:100%;padding:0;border-collapse:collapse;background-color:#18263e">
+    <tr>
+        <td style="padding:30px">
+            <table align="center" cellpadding="0" cellspacing="0" border="0" width="600" style="margin:0 auto;width:600px;padding:0;border-collapse:collapse">
+                <tr>
+                    <td align="center">
+                        <img style="width:190px;height:55px;border:0" width="190" height="55" border="0" src="https://www.developro.pl/images/logo-biale.png" alt="DeveloPro">
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding:0 30px">
+            <table align="center" cellpadding="0" cellspacing="0" border="0" width="600" style="margin:0 auto;width:600px;padding:0;border-collapse:collapse;background:white">
+                <tr>
+                    <td style="font-family:Arial;font-size:14px;padding:10px 30px;line-height:24px">
+                        <p style="text-align:center"><?= $this->nazwa_strony; ?></p>
+                        <p><b>Wiadomość wysłana: <?= date("d.m.Y - H:i:s"); ?></b></p>
+                        <hr style="border:0;border-bottom:1px solid #ececec" />
+                        <p>
+                            <b>Imi:</b> <?= $this->imie; ?><br />
+                            <b>Nazwisko:</b> <?= $this->nazwisko; ?><br />
+                            <b>E-mail:</b> <?= $this->email; ?><br />
+                            <?php if($this->telefon){?><b>Telefon:</b> <?= $this->telefon; ?><br /><?php } ?>
+                            <b>Wiadomość:</b> <?= $this->wiadomosc; ?><br />
+                            <b>IP:</b> <?= $this->ip; ?>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

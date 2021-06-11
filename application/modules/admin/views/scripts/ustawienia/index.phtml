@@ -1,0 +1,82 @@
+<div class="title"><h1>Ustawienia strony</h1></div>
+<div class="row-fluid">
+	<div class="span12">
+		<ul class="nav-tabs none">
+			<li class="active"><a href="<?=$this->baseUrl();?>/admin/ustawienia/"><span class="fa i-cog"></span>Główne ustawienia strony</a></li>
+			<li><a href="<?=$this->baseUrl();?>/admin/ustawienia/social/"><span class="fa i-lista"></span>Portale społecznościowe</a></li>
+			<li><a href="<?=$this->baseUrl();?>/admin/ustawienia/mapa/"><span class="fa i-map"></span>Kontakt</a></li>
+			<li><a href="<?=$this->baseUrl();?>/admin/ustawienia/backup/"><span class="fa i-sql"></span>Kopia bazy</a></li>
+			<li><a href="<?=$this->baseUrl();?>/admin/ustawienia/baner/"><span class="fa i-image"></span>Baner na start</a></li>
+		</ul>
+		<div class="widget">
+		<div class="tab-content">
+			<form id="ustawienia" name="ustawienia" enctype="application/x-www-form-urlencoded" class="mainForm" action="" method="post">
+				<div class="formRow">
+					<label for="nazwa">Nazwa strony<br /><span style="font-size:11px;color:#A8A8A8">Meta tag - title</span></label>
+					<div class="formRight tip rowInfo" data-original-title="(Title) tytuł strony wyświetlany na pasku w przeglądarce" data-placement="bottom-left"><input type="text" name="nazwa" id="nazwa" value="<?=$this->header->nazwa;?>" size="67" class="validate[required]" /></div>
+				</div>
+				<div class="formRow">
+					<label for="opis">Opis strony<br /><span style="font-size:11px;color:#A8A8A8">Meta tag - description</span></label>
+					<div class="formRight tip rowInfo" data-original-title="(Description) krótki opis strony który pojawi się w wyszukiwarce" data-placement="bottom-left"><input type="text" name="opis" id="opis" value="<?=$this->header->opis;?>" size="67" class="validate[required]" /></div>
+				</div>
+				<h2 class="section">Podgląd wyszukiwarki Google</h2>
+				<div class="formRow">
+					<div class="formRight rowInfo">
+						<h3 style="font-family: arial,sans-serif;font-size:18px;line-height: 1.2;margin:0;font-weight: normal;color:#1a0dab;"><?=previewParser($this->header->nazwa, 65);?></h3>
+						<div><cite style="font-size:14px;line-height: 16px;color: #006621;font-style: normal;font-family: arial,sans-serif"><?=$this->header->domena;?></cite></div>
+						<span style="font-family: arial,sans-serif;font-size:13px;line-height:18px;color: #545454"><?=previewParser($this->header->opis, 230);?></span>
+					</div>
+				</div>
+
+				<div class="formRow">
+					<label for="adres">Adres strony</label>
+					<div class="formRight tip rowInfo" data-original-title="Adres strony zaczynający się od http:// np. http://wwww.mojastrona.pl" data-placement="bottom-left"><input type="text" name="adres" id="adres" value="<?=$this->header->domena;?>" size="47" class="validate[required,custom[url]]" /></div>
+				</div>
+				<div class="formRow">
+					<label for="mail">Adres e-mail<br /><span style="font-size:11px;color:#A8A8A8">Adres e-mail do formularza kontaktowego</span></label>
+					<div class="formRight tip rowInfo" data-original-title="Adres e-mail właściciela strony" data-placement="bottom-left"><input type="text" name="mail" id="mail" value="<?=$this->header->email;?>" size="47" class="validate[required,custom[email]]" /></div>
+				</div>
+				<div class="formRow">
+					<label for="autor">Autor strony<br /><span style="font-size:11px;color:#A8A8A8">Meta tag - author</span></label>
+					<div class="formRight tip rowInfo" data-original-title="Autor strony" data-placement="bottom-left"><input type="text" name="autor" id="autor" value="<?=$this->header->autor;?>" size="47" class="validate[required]" /></div>
+				</div>
+				<div class="formRow">
+					<label for="slider">Indeksowanie<br /><span style="font-size:11px;color:#A8A8A8">Meta tag - robots</span></label>
+					<div class="formRight tip rowInfo" data-original-title="Ustaw sposób indeksowania strony" data-placement="bottom-left">
+					<select id="robots" name="robots">
+						<option value="noindex, nofollow"<?php if($this->header->robots == 'noindex, nofollow'){?> selected<?php } ?>>noindex, nofollow</option>
+						<option value="index, follow"<?php if($this->header->robots == 'index, follow'){?> selected<?php } ?>>index, follow</option>
+						<option value="index, nofollow"<?php if($this->header->robots == 'index, nofollow'){?> selected<?php } ?>>index, nofollow</option>
+						<option value="noindex, follow"<?php if($this->header->robots == 'noindex, follow'){?> selected<?php } ?>>noindex, follow</option>
+					</select>
+					</div>
+				</div>
+
+				<div class="formRow">
+					<label for="head">Kod w <code>&lt;head&gt;</code></label>
+					<div class="formRight tip rowInfo" data-original-title="Miejsce do wklejenia kodu np. Gooogle Analytics" data-placement="bottom-left"><textarea name="head" id="head" rows="7" style="width:648px" cols="80"><?=$this->header->head;?></textarea></div>
+				</div>
+				<div class="formRow">
+					<label for="afterbody">Kod po otwarciu <code>&lt;body&gt;</code></label>
+					<div class="formRight tip rowInfo" data-original-title="Miejsce do wklejenia kodu np. Gooogle Analytics" data-placement="bottom-left"><textarea name="afterbody" id="afterbody" rows="7" style="width:648px" cols="80"><?=$this->header->afterbody;?></textarea></div>
+				</div>
+                <div class="formRow">
+					<label for="footer">Kod przed końcem <code>&lt;body&gt;</code></label>
+					<div class="formRight tip rowInfo" data-original-title="Miejsce do wklejenia kodu np. Gooogle Analytics" data-placement="bottom-left"><textarea name="footer" id="footer" rows="7" style="width:648px" cols="80"><?=$this->header->footer;?></textarea></div>
+				</div>
+
+				<div class="formRow">
+					<label for="stopka">Tekst w stopce</label>
+					<div class="formRight tip rowInfo" data-original-title="Tekst przy logo w stopce" data-placement="bottom-left"><textarea name="stopka" id="stopka" rows="7" style="width:648px" cols="80"><?=$this->header->stopka;?></textarea></div>
+				</div>
+				
+				<div class="formRow">
+					<label for="cookies">Tekst cookies</label>
+					<div class="formRight tip rowInfo" data-original-title="Tekst na pasku cookies" data-placement="bottom-left"><textarea name="cookies" id="cookies" rows="7" style="width:648px" cols="80"><?=$this->header->cookies;?></textarea></div>
+				</div>
+				<div class="formSubmit"><input type="submit" name="submitUstawienia" id="submit" value="Zapisz" class="greyishBtn" /></div>
+			</form>
+		</div>
+		</div>
+	</div>
+</div>

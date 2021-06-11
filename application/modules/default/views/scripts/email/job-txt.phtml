@@ -1,0 +1,10 @@
+<?= $this->nazwa_strony.PHP_EOL; ?>
+    Wiadomość wysłana: <?= date("d.m.Y - H:i:s").PHP_EOL; ?>
+    ----------------------<?=PHP_EOL;?>
+    Imię: <?= $this->imie.PHP_EOL; ?>
+    Nazwisko: <?= $this->nazwisko.PHP_EOL; ?>
+    E-mail: <?= $this->email.PHP_EOL; ?>
+<?php if($this->telefon){?>Telefon: <?= $this->telefon.PHP_EOL; } ?>
+    IP: <?= $this->ip.PHP_EOL; ?>
+    ----------------------<?=PHP_EOL;?>
+<?= $this->wiadomosc.PHP_EOL; ?>

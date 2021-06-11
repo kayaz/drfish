@@ -1,0 +1,50 @@
+<?php if($this->user) { ?>
+	<?php if($this->user->role == "admin" || $this->user->role == "user") { ?>
+		<div class="loginWrapper">
+			<div class="logo"><a href="<?=$this->adminUrl();?>/admin/ustawienia/">kCMS</a></div>
+			<div class="loginPanel radius3">
+				<p style="padding:30px 20px 30px;text-align:center;margin:10px 0 0">Przejdź do <a href="/"><b>strony głównej</b></a> lub poczekaj aby przejść do Zarządzania stroną</p>
+			</div>
+		</div>
+		<meta http-equiv="refresh" content="3; url=<?=$this->adminUrl();?>/admin/ustawienia/">
+	<?php }else{ ?>
+		<div class="loginWrapper">
+			<div class="logo"><a href="<?=$this->adminUrl();?>/admin/ustawienia/">kCMS</a></div>
+			<div class="loginPanel radius3">
+				<p style="padding:20px;text-align:center">Nie masz prawa do oglądania tej strony. <a href="<?=$this->baseUrl();?>/">Strona główna</a></p>
+			</div>
+		</div>
+		<meta http-equiv="refresh" content="3; url=/">
+	<?php } ?>
+<?php }else{ ?>
+<?php if($this->loginMessage) { ?>
+<script type="text/javascript">
+<!--
+	var noty_id = noty({timeout: 5000, text: 'Niestety podany login lub hasło jest błędne (sprawdź czy nie jest wciśnięty klawisz CapsLock)', type: 'error'});
+//-->
+</script>
+<?php } ?>
+<div class="loginWrapper">
+    <div class="logo"><a href="<?=$this->adminUrl();?>/admin/ustawienia/">kCMS</a></div>
+    <div class="loginPanel radius3">
+        <form class="mainForm" id="logowanie" name="logowanie" enctype="application/x-www-form-urlencoded" action="" method="post">
+            <fieldset>
+                <div class="loginRow">
+                    <label for="login">Login:</label>
+                    <div class="loginInput"><input type="text" id="login" class="validate[required]" value="" name="login" /></div>
+                </div>
+                
+                <div class="loginRow">
+                    <label for="haslo">Hasło:</label>
+                    <div class="loginInput"><input type="password" id="haslo" class="validate[required]" value="" name="haslo" /></div>
+                </div>
+                
+                <div class="loginRow">
+                    <div class="rememberMe"><input type="checkbox" id="check2" name="chbox" /><label for="check2">Zapamiętaj mnie</label></div>
+                    <div class="submitForm"><input type="submit" class="greyishBtn" value="Zaloguj się" /></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<?php }?>

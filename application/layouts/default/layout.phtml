@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <?= $this->header->head; ?>
+
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title><?= $this->header->nazwa; ?></title>
+    <meta name="description" content="<?= $this->header->opis; ?>">
+    <meta name="keywords" content="<?= $this->header->klucze; ?>">
+<?php if($this->header->autor){?>
+	<meta name="author" content="<?= $this->header->autor; ?>">
+<?php } ?>
+	<meta name="robots" content="<?= $this->header->robots; ?>">
+
+<?php if($this->header->share_plik) {?>
+	<meta property="og:title" content="<?=$this->header->share_tytul;?>">
+	<meta property="og:image" content="<?= $this->header->domena; ?>files/share/<?=$this->header->share_plik;?>">
+	<meta property="og:description" content="<?=$this->header->share_opis;?>">
+	<meta property="og:type" content="website">
+	<meta property="og:image:width" content="600">
+	<meta property="og:image:height" content="315">
+	<meta property="og:url" content="<?= $this->header->domena; ?>">
+<?php } ?>
+
+	<!-- Wylaczenie numeru tel. -->
+	<meta name="format-detection" content="telephone=no">
+
+	<!-- .css files -->
+	<link rel="stylesheet" href="<?=$this->cssUrl();?>/bootstrap.css">
+	<link rel="stylesheet" href="<?=$this->cssUrl();?>/styles.css?data=<?=date('is');?>">
+</head>
+<body>
+    <?= $this->header->afterbody; ?>
+
+    <?=$this->render('partials/header.phtml');?>
+
+    <?= $this->layout()->content; ?>
+
+	<?=$this->render('partials/footer.phtml');?>
+
+	<!-- jQuery -->
+    <script src="<?=$this->jsUrl();?>/jquery.js" charset="utf-8"></script>
+	<script src="<?=$this->jsUrl();?>/bootstrap.bundle.min.js" charset="utf-8"></script>
+	<script src="<?=$this->jsUrl();?>/main.js" charset="utf-8"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+        <?php if($this->header->popup_status == 1){; ?>
+        <?php if($this->header->popup_tryb == 1){; ?>
+        $.cookie('popup', null);
+        $.magnificPopup.open({
+            items: {
+                src: '<div class="white-popup"><?= str_replace (array("\r\n", "\n", "\r"), ' ', $this->header->popup_tekst); ?></div>',
+                type: 'inline'
+            }
+        });
+        setTimeout( function(){
+            $.magnificPopup.close();
+        }, 5000 );
+        <?php } else {?>
+        if ($.cookie('popup') == null){
+            $.magnificPopup.open({
+                items: {
+                    src: '<div class="white-popup"><?= str_replace (array("\r\n", "\n", "\r"), ' ', $this->header->popup_tekst); ?></div>',
+                    type: 'inline'
+                }
+            });
+            setTimeout( function(){
+                $.magnificPopup.close();
+            }, 5000 );
+            $.cookie('popup','true');
+        }
+        <?php } ?>
+        <?php } else {?>
+        $.cookie('popup', null);
+        <?php } ?>
+	});
+	</script>
+
+	<?= $this->header->footer; ?>
+
+    <?php if(Zend_Auth::getInstance()->hasIdentity()){?>
+        <?=$this->render('inline/inline.phtml') ?>
+    <?php } ?>
+</body>
+</html>

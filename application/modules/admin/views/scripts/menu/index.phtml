@@ -1,0 +1,40 @@
+<script type="text/javascript" language="javascript">
+    //<![CDATA[
+    $(document).ready(function(){
+        $(".content").sortuj('<?=$this->baseUrl;?>/admin/menu/ustaw/co/menu_kategorie/');
+    });
+    //]]>
+</script>
+<div class="title"><h1><?=$this->controlname;?></h1></div>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="widget">
+            <div class="table-header"><form action="" id="filter-form">
+                </form></div>
+            <table width="100%" cellspacing="0" cellpadding="0" class="adm" id="sortable">
+                <thead>
+                <tr>
+                    <th width="45%">Nazwa</th>
+                    <th width="45%">Nazwa EN</th>
+                    <th width="10%"></th>
+                </tr>
+                </thead>
+                <tbody class="content">
+                <?php foreach($this->katalog as $katalog) : ?>
+                    <tr id="recordsArray_<?= $this->escape($katalog->id);?>">
+                        <td><a href="<?= $this->baseUrl;?>/admin/menu/pokaz/id/<?= $this->escape($katalog->id);?>/"><?= $this->escape($katalog->nazwa);?></a></td>
+                        <td><?= $this->escape($katalog->nazwa_en);?></td>
+                        <td class="right">
+                            <a href="<?= $this->baseUrl;?>/admin/menu/pokaz/id/<?= $this->escape($katalog->id);?>/" class="actionBtn tip btnCatalog" title="Pokaż kategorie" data-placement="top-right"></a>
+                            <a href="<?= $this->baseUrl;?>/admin/menu/edytuj/id/<?= $this->escape($katalog->id);?>/" class="actionBtn tip btnEdit" title="Edytuj kategorie" data-placement="top-right"></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+            <div class="table-footer">
+                <a href="<?=$this->baseUrl;?>/admin/menu/nowa/" class="button greyishBtn">Nowa kategoria</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,362 @@
+<style>
+    #zendForm {display:none}
+    .col-inline-nav2 {
+        text-align: center;
+        display: inline-block;
+    }
+    .col-inline-nav{position:absolute;top:0;bottom:auto;left:0;right:0;display:none;z-index: 9999;margin:auto}
+    .col-inline-nav .btn, .modal-dialog .btn, .col-inline-nav2 .btn {background:#1ba9e1;border:0;cursor:pointer}
+    .col-inline-nav2 .btn:before {margin-right:4px}
+    .modal-header {
+        background: #1ba9e1;
+        color: white;
+        text-transform: uppercase;
+        padding: 13px 15px;
+    }
+    .modal-title {
+        font-family: 'Quicksand', sans-serif;
+        font-size: 16px;
+    }
+    .modal-content {
+        -webkit-box-shadow: 0 0 18px 0 rgba(0,0,0,0.37);
+        -moz-box-shadow: 0 0 18px 0 rgba(0,0,0,0.37);
+        box-shadow: 0 0 18px 0 rgba(0,0,0,0.37);
+    }
+    .modal-content label {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 13px;
+    }
+    .close {cursor: pointer;}
+    .inline {position:relative;z-index:900;min-height:30px}
+    .inline:hover:before {position:absolute;top:0;bottom:0;left:0;right:0;border:2px solid #1ba9e1;content:""}
+    .inline:hover .col-inline-nav {display:block}
+    .alert{border-radius:0}.btn-modal{font-family: 'Quicksand', sans-serif;font-size:13px;display:inline-block;border-radius:0}.btn-modal-edit,.btn-modal-move,.btn-modal-dell{display:inline-block;font-size:13px;text-align:center;width:26px;line-height:13px;padding:5px 0;border-radius:0}.btn-modal:before{font-family:"FontAwesome";content:"\f044";margin: 0 0 0 2px}.btn-modal-edit:before{font-family:"FontAwesome";content:"\f044"}.btn-modal-dell:before{font-family:"FontAwesome";content:"\f014"}.btn-modal-move:before{font-family:"FontAwesome";content:"\f047"}.btn-modal-img:before{font-family:"FontAwesome";content:"\f03e"}.modal-content,.modal-header,.form-control,.modal-dialog,.modal-dialog .btn{font-family: 'Quicksand', sans-serif;border-radius:0}.modal-dialog{max-width:950px}.modal-dialog .form-control{font-family: 'Quicksand', sans-serif;font-size:13px}.modal-dialog .btn{padding:6px 30px;font-size:13px}.progress{display:none}.ui-sortable-placeholder{border:0;background:#feffac;background:rgba(255,240,0,0.3);visibility:visible!important;outline:1px dashed #a0a0a0;outline-offset:-5px}.ui-sortable-helper{-webkit-box-shadow:0 0 0 0 rgba(0,0,0,0.1)!important;-moz-box-shadow:0 0 0 0 rgba(0,0,0,0.1)v;box-shadow:0 0 0 0 rgba(0,0,0,0.1)!important;z-index:2;-webkit-transition:none!important;-webkit-transform:scale(1)!important;-ms-transition:none!important;-ms-transform:scale(1)!important;-moz-transition:none!important;-moz-transform:scale(1)!important;transition:none!important;transform:scale(1)!important}
+    .modal-body input[type="file"]{
+        -webkit-appearance: button;
+        background: #1ba9e1;
+        color: white;
+        display: inline-block;
+        width: auto;
+        padding: 10px 30px;
+        cursor: pointer;
+    }
+</style>
+
+<div class="modal fade" id="inlineModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edytuj</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Zamknij"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="inlineform">
+                    <?php echo new Form_InlineForm();?>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="<?=$this->editorJsUrl();?>../../../../public/index.php" charset="utf-8"></script>
+<script src="<?=$this->jsUrl();?>../../../../public/index.php" charset="utf-8"></script>
+<link rel="stylesheet" href="<?=$this->adminCssUrl();?>../../../../public/index.php" type="text/css"><link href="https://fonts.googleapis.com/css?family=Quicksand:500,700&display=swap&subset=latin-ext" rel="stylesheet">
+<script type="text/javascript">
+
+    var baseURL = 'https://stegna.test/';
+    var baseClearURL = 'https://stegna.test/';
+
+    function process_response(e) {
+        var f = $("#inlineModal form");
+        var d;
+        for (d in e) {
+            f.find('[name="' + d + '"]').val(e[d])
+        }
+    }
+    var is_editor_active = function (b) {
+        if (typeof tinyMCE == "undefined") {
+            return false
+        }
+        if (typeof b == "undefined") {
+            editor = tinyMCE.activeEditor
+        } else {
+            editor = tinyMCE.EditorManager.get(b)
+        }
+        if (editor == null) {
+            return false
+        }
+        return !editor.isHidden()
+    };
+
+    function run_tiny(c, g, h, i) {
+        if (c !== undefined) {
+            $("label[for='obrazek']").append(" - szerokość: " + c + " px")
+        }
+        if (g !== undefined) {
+            $("label[for='obrazek']").append(" - wysokość: " + g + " px")
+        }
+        var e = h.split(",");
+        if (e.indexOf("modaleditortext") !== -1) {} else {
+            tinyMCE_GZ.init({
+                plugins: "table,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,paste,noneditable,nonbreaking,template,advlist,imagemanager,xhtmlxtras",
+                theme: "advanced",
+                languages: "pl",
+                disk_cache: true,
+                debug: false
+            });
+            tinyMCE.init({
+                selector: "#modaleditortext",
+                theme: "advanced",
+                plugins: "table,advimage,advlink,inlinepopups,insertdatetime,media,contextmenu,paste,noneditable,nonbreaking,template,advlist,imagemanager,xhtmlxtras",
+                theme_advanced_buttons1: "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontsizeselect",
+                theme_advanced_buttons2: "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,image,cleanup,code,|,insertdate,inserttime|,forecolor,backcolor",
+                theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,media,attribs",
+                theme_advanced_buttons4: "",
+                theme_advanced_toolbar_location: "top",
+                theme_advanced_toolbar_align: "left",
+                theme_advanced_statusbar_location: "bottom",
+                theme_advanced_resizing: true,
+                language: "pl",
+                theme_advanced_resize_horizontal: false,
+                relative_urls: false,
+                valid_elements: "*[*]",
+                extended_valid_elements: "#p[*]",
+                body_class: "myform",
+                theme_advanced_path: false,
+                setup: function (l) {
+                    l.onKeyUp.add(function (m, p) {
+                        var n, o;
+                        n = m.getContent().length;
+                        o = "Ilość znaków: " + n;
+                        tinymce.DOM.setHTML(tinymce.DOM.get(tinyMCE.activeEditor.id + "_path_row"), o)
+                    });
+                    l.onInit.add(function (n, m) {
+                        tinyMCE.activeEditor.setContent("");
+                        tinyMCE.activeEditor.setContent(i.modaleditortext)
+                    })
+                }
+            })
+        }
+    }
+
+    var fixHelper = function (c, d) {
+        d.children().each(function () {
+            $(this).width($(this).width());
+            $(this).height($(this).height())
+        });
+        return d
+    };
+    jQuery.fn.sortuj = function (b) {
+        this.sortable({
+            opacity: 0.6,
+            cursor: "move",
+            start: function (d, a) {
+                a.placeholder.height(a.item.outerHeight());
+                a.placeholder.width(a.item.outerWidth())
+            },
+            update: function () {
+                var a = $(this).sortable("serialize");
+                $.post(b, a, function (d) {})
+            }
+        })
+    };
+
+    if ($(".positions").length) {
+        $(".positions").sortuj(baseURL + "sortuj/inline/")
+    }
+
+    $("#inlineModal").on("shown.bs.modal", function (j) {
+        $("#zendForm .form-group").removeAttr("style");
+        document.getElementById("obrazek").value = "";
+        document.getElementById("zendForm").reset();
+        $("#id_element").val("");
+        var f = j.relatedTarget.dataset.inline;
+        var k = j.relatedTarget.dataset.place;
+        var a = j.relatedTarget.dataset.method;
+        var c = j.relatedTarget.dataset.imgwidth;
+        var g = j.relatedTarget.dataset.imgheight;
+        var h = j.relatedTarget.dataset.hideinput;
+        if (h) {
+            var b = h.split(",");
+            var d;
+            for (d = 0; d < b.length; ++d) {
+                $(".form-" + b[d]).hide()
+            }
+        }
+        $("#zendForm").fadeIn();
+        if (f !== undefined) {
+            $.ajax({
+                type: "POST",
+                url: baseURL + "loadinline/" + f + "/",
+                success: function (i) {
+                    if (i.error) {
+                        var r = confirm(i.error);
+                        if (r == true) {
+                            $(".modal h5").text("Dodaj nowe tłumaczenie");
+
+                            a = 'add';
+                            k = i.id;
+
+                            process_response(i);
+                            run_tiny(c, g, h, i);
+
+                        } else {
+                            $("#inlineModal").modal("toggle");
+                        }
+
+                    } else {
+                        process_response(i);
+                        $("#id_element").val(f);
+                        run_tiny(c, g, h, i);
+                    }
+                },
+                error: function (e) {
+                    alert("Wystąpił błąd połączenia z bazą")
+                }
+            })
+        } else {
+            if (c !== undefined) {
+                $("label[for='obrazek']").append(" - szerokość: " + c + " px")
+            }
+            if (g !== undefined) {
+                $("label[for='obrazek']").append(" - wysokość: " + g + " px")
+            }
+            $(".modal h5").text("Dodaj nowy element")
+        }
+
+        $(".inlineform form").on("submit", function (m) {
+            m.preventDefault();
+            m.stopImmediatePropagation();
+            var o = new FormData($("#zendForm")[0]);
+            var l = o.get("id_element");
+            if (l == "") {
+                var n = baseURL + "zapiszinline/" + k + "/a/" + a + "/";
+                console.log("Dodaje nowy element")
+            } else {
+                var n = baseURL + "zapiszinline/" + l + "/a/" + a + "/";
+                console.log("Aktualizuje element")
+            }
+            var i = $("input[type=file]")[0].files[0];
+            if (i !== undefined) {
+                o.append("obrazek", i);
+                o.append("obrazek_width", c);
+                o.append("obrazek_height", g)
+            }
+            if (is_editor_active()) {
+                var e = tinyMCE.activeEditor.getContent();
+                o.set("modaleditortext", e)
+            }
+            $.ajax({
+                type: "POST",
+                url: n,
+                data: o,
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                enctype: "multipart/form-data",
+                processData: false,
+                contentType: false,
+                beforeSend: function () {
+                    $(".modal form").hide();
+                    $(".modal h5").text("Zapisuje...");
+                    $(".modal .progress").css({
+                        display: "flex"
+                    })
+                },
+                cache: false,
+                success: function (p) {
+                    if (p.status == "success") {
+                        $(".progress").removeAttr("style");
+                        console.log(p);
+
+                        if (p.items.modaltytul) {
+                            $("[data-modaltytul=" + p.item + "]").text(p.items.modaltytul)
+                        }
+                        if (p.items.modaleditor) {
+                            $("[data-modaleditor=" + p.item + "]").text(p.items.modaleditor)
+                        }
+                        if (p.items.modaleditortext) {
+                            $("[data-modaleditortext=" + p.item + "]").html(p.items.modaleditortext)
+                        }
+                        if (p.items.modallink) {
+                            $("[data-modallink=" + p.item + "]").attr("href", p.items.modallink)
+                        }
+                        if (p.items.modallinkbutton) {
+                            $("[data-modalbutton=" + p.item + "]").text(p.items.modallinkbutton)
+                        }
+                        if (p.items.obrazek_alt) {
+                            $("[data-img=" + p.item + "]").attr("alt", p.items.obrazek_alt)
+                        }
+                        if (p.items.obrazek) {
+                            $("[data-img=" + p.item + "]").attr("src", baseClearURL + "files/inline/" + p.items.obrazek)
+                        }
+                        if (p.items.id_place) {
+                            $("[data-placeholder=" + p.items.id_place + "]").append(p.html)
+                        }
+
+                        $(".modal h5").text("Gotowe");
+                        $(".inlineform").append('<div class="alert alert-success border-0" role="alert">Edycja zakończona sukcesem!</div>');
+                        setTimeout(function () {
+                            $("#inlineModal").modal("hide");
+                            setTimeout(function () {
+                                $(".progress").removeAttr("style");
+                                $(".modal form").removeAttr("style");
+                                $(".modal h5").text("Edytuj");
+                                $("#id_element").val("");
+                                $(".alert").remove()
+                            }, 200)
+                        }, 2000)
+                    } else {
+                        console.log("Coś poszło nie tak :)")
+                    }
+                },
+                error: function () {
+                    alert("Wystąpił bład połączenia z bazą");
+                    $("#inlineModal").modal("hide");
+                }
+            });
+            return false
+        })
+    });
+
+    $(".btn-dell-action").click(function (f) {
+        var e = $(this).data("inline");
+        var d = "id=" + e;
+        $.ajax({
+            type: "POST",
+            url: baseURL + "usuninline/" + e + "/",
+            data: d,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            success: function (a) {
+                if (a.status == "success") {
+                    if (a.item) {
+                        $("[data-item=" + a.item + "]").remove()
+                    }
+                } else {
+                    console.log("cos poszlo zle")
+                }
+            },
+            error: function () {
+                alert("Wystąpił bład połączenia z bazą")
+            }
+        });
+        f.preventDefault()
+    });
+
+    $("#inlineModal").on("hide.bs.modal", function (c) {
+        if (is_editor_active()) {
+            var d = tinyMCE.activeEditor.id;
+            tinyMCE.execCommand("mceFocus", false, d);
+            tinyMCE.execCommand("mceRemoveControl", false, d)
+        }
+        document.getElementById("zendForm").reset();
+        $("label[for='obrazek']").text("Obrazek");
+        $("#id_element").val("");
+        $(".modal h5").text("Edytuj");
+        $(".progress").removeAttr("style");
+    });
+</script>

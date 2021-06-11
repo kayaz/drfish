@@ -1,0 +1,48 @@
+.ui-widget-overlay{position:fixed;top:0;left:0;width:100%;height:100%}
+.ui-datepicker{width:20em;display:none}
+.ui-datepicker .ui-datepicker-header{position:relative}
+.ui-datepicker .ui-datepicker-prev,.ui-datepicker .ui-datepicker-next{position:absolute;top:2px;width:1.8em;height:1.8em}
+.ui-datepicker .ui-datepicker-prev-hover,.ui-datepicker .ui-datepicker-next-hover{top:1px}
+.ui-datepicker .ui-datepicker-prev{left:2px}
+.ui-datepicker .ui-datepicker-next{right:2px}
+.ui-datepicker .ui-datepicker-prev-hover{left:1px}
+.ui-datepicker .ui-datepicker-next-hover{right:1px}
+.ui-datepicker .ui-datepicker-prev span,.ui-datepicker .ui-datepicker-next span{display:block;position:absolute;left:50%;margin-left:-8px;top:50%;margin-top:-7px;height:15px;width:15px}
+.ui-datepicker .ui-datepicker-title{line-height:1.8em;text-align:center;font-size:11px;margin:0 2.3em}
+.ui-datepicker .ui-datepicker-title select{font-size:1em;margin:1px 0}
+.ui-datepicker select.ui-datepicker-month,.ui-datepicker select.ui-datepicker-year{width:49%}
+.ui-datepicker table{width:100%;font-size:.9em;border-collapse:collapse;margin:0 0 .4em}
+.ui-datepicker th{text-align:center;font-weight:bold;border:0;padding:.7em .3em}
+.ui-datepicker td{border:0;text-align:center;padding:1px}
+.ui-datepicker td span,.ui-datepicker td a{display:block;text-align:center;text-decoration:none;padding:6px 3px}
+.ui-datepicker .ui-datepicker-buttonpane{background-image:none;border-left:0;border-right:0;border-bottom:0;margin:.7em 0 0;padding:0 .2em}
+.ui-datepicker .ui-datepicker-buttonpane button{float:right;cursor:pointer;width:auto;overflow:visible;margin:.5em .2em .4em;padding:.2em .6em .3em}
+.ui-datepicker.ui-datepicker-multi{width:auto}
+.ui-datepicker-multi .ui-datepicker-group table{width:95%;margin:0 auto .4em}
+.ui-datepicker-multi-2 .ui-datepicker-group{width:50%}
+.ui-datepicker-multi-3 .ui-datepicker-group{width:33.3%}
+.ui-datepicker-multi-4 .ui-datepicker-group{width:25%}
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header{border-left-width:0}
+.ui-datepicker-multi .ui-datepicker-buttonpane{clear:left}
+.ui-datepicker-row-break{clear:both;width:100%;font-size:0}
+.ui-widget{font-family:Arial,sans-serif;font-size:12px}
+.ui-widget .ui-widget{font-size:1em}
+.ui-widget-content{border:1px solid #aaaaaa;color:#333333;background:white}
+.ui-widget-content a{color:#333333}
+.ui-widget-header{background:#f5f4f4;color:#444444;padding:5px 10px}
+.ui-widget-header a{color:#444444}
+.ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default{border:1px solid #ffffff;background:#ffffff url(images/ui-bg_glass_60_ffffff_1x400.png) 50% 50% repeat-x;font-weight:bold;color:#3383bb}
+.ui-state-default a,.ui-state-default a:link,.ui-state-default a:visited{color:#3383bb;text-decoration:none}
+.ui-state-hover,.ui-widget-content .ui-state-hover,.ui-state-focus,.ui-widget-content .ui-state-focus{border:1px solid #247FD8;background:#247fd8;font-weight:bold;color:#ffffff}
+.ui-widget-header .ui-state-hover,.ui-widget-header .ui-state-focus{border:1px solid #f5f4f4!important;background:#f5f4f4!important;font-weight:bold;color:#ffffff;cursor:pointer}
+.ui-state-hover a,.ui-state-hover a:hover,.ui-state-hover a:link,.ui-state-hover a:visited,.ui-state-focus a,.ui-state-focus a:hover,.ui-state-focus a:link,.ui-state-focus a:visited{color:#ffffff;text-decoration:none;cursor:default}
+.ui-state-active,.ui-widget-content .ui-state-active,.ui-widget-header .ui-state-active{border:1px solid #999999;font-weight:bold;color:#ffffff;background:#999}
+.ui-state-active a,.ui-state-active a:link,.ui-state-active a:visited{color:#ffffff;text-decoration:none}
+.ui-state-highlight,.ui-widget-content .ui-state-highlight,.ui-widget-header .ui-state-highlight{border:1px solid #000000;background:#000000;color:#ffffff}
+.ui-state-highlight a,.ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a{color:#ffffff}
+.ui-widget-header .ui-icon{background-image:url(../../gfx/cms/ui-icons_454545_256x240.png)}
+.ui-icon-circle-triangle-e{background-position:-48px -192px}
+.ui-icon-circle-triangle-s{background-position:-64px -192px}
+.ui-icon-circle-triangle-w{background-position:-80px -192px}
+.ui-icon-circle-triangle-n{background-position:-96px -192px}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current,.ui-datepicker-multi .ui-datepicker-group{float:left}

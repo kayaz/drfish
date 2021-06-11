@@ -1,0 +1,5 @@
+<ul id="menu" class="none">
+    <li<?php if($this->control == 'ustawienia'){ echo ' class="active"';} ?>><a href="<?=$this->baseUrl();?>/admin/ustawienia/"><span class="fa m-ustawienia"></span>Ustawienia</a></li>
+    <li<?php if($this->control == 'uzytkownicy'){ echo ' class="active"';} ?>><a href="<?=$this->baseUrl();?>/admin/uzytkownicy/"><span class="fa m-uzytkownicy"></span>Użytkownicy</a></li>
+    <li<?php if($this->control == 'menu'){ echo ' class="active"';} ?>><a href="<?=$this->baseUrl; ?>/admin/menu/"><span class="fa m-book"></span>Dania</a></li>
+</ul>

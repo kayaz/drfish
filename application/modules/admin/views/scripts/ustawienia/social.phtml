@@ -1,0 +1,57 @@
+<div class="title"><h1>Ustawienia strony - Profile społecznościowe</h1></div>
+<div class="row-fluid">
+	<div class="span12">
+		<ul class="nav nav-tabs none">
+			<li><a href="<?=$this->baseUrl();?>/admin/ustawienia/"><span class="fa i-cog"></span>Główne ustawienia strony</a></li>
+			<li class="active"><a href="<?=$this->baseUrl();?>/admin/ustawienia/social/"><span class="fa i-lista"></span>Portale społecznościowe</a></li>
+			<li><a href="<?=$this->baseUrl();?>/admin/ustawienia/mapa/"><span class="fa i-map"></span>Kontakt</a></li>
+			<li><a href="<?=$this->baseUrl();?>/admin/ustawienia/backup/"><span class="fa i-sql"></span>Kopia bazy</a></li>
+			<li><a href="<?=$this->baseUrl();?>/admin/ustawienia/baner/"><span class="fa i-image"></span>Baner na start</a></li>
+		</ul>
+		<div class="widget">
+		<div class="tab-content">
+			<form id="ustawienia" name="ustawienia" enctype="multipart/form-data" class="mainForm" action="" method="post">
+				<div class="formRow">
+					<label for="slider">Facebook</label>
+					<div class="formRight tip rowInfo" data-original-title="adres do profilu Facebook" data-placement="bottom">
+                        <input type="text" name="fb" id="fb" value="<?=$this->header->fb;?>" size="77" />
+                    </div>
+				</div>
+                <div class="formRow">
+					<label for="instagram">Instagram</label>
+					<div class="formRight tip rowInfo" data-original-title="adres do profilu Instagram" data-placement="bottom">
+                        <input type="text" name="instagram" id="instagram" value="<?=$this->header->instagram;?>" size="77" />
+                    </div>
+				</div>
+				<div class="formRow">
+					<label for="yt">TripAdvisor</label>
+					<div class="formRight tip rowInfo" data-original-title="adres do profilu TripAdvisor" data-placement="bottom">
+					    <input type="text" name="yt" id="yt" value="<?=$this->header->yt;?>" size="77" />
+					</div>
+				</div>
+
+		<h2 class="section">Protokół Open Graph</h2>
+				<div class="formRow"><img src="<?=$this->baseUrl();?>/public/gfx/cms/share_cms.png"></div>
+				
+				<div class="formRow">
+					<label for="share_tytul">Tytuł strony (60-80 znaków)</label>
+					<div class="formRight tip rowInfo" data-original-title="Tytuł strony" data-placement="bottom"><input type="text" name="share_tytul" id="share_tytul" value="<?=$this->header->share_tytul;?>" size="77" class="validate[required]" /></div>
+				</div>
+				<div class="formRow">
+					<label for="share_opis">Krótki opis strony (max 200 znaków)</label>
+					<div class="formRight tip rowInfo" data-original-title="Krótki opis strony" data-placement="bottom"><input type="text" name="share_opis" id="share_opis" value="<?=$this->header->share_opis;?>" size="77" class="validate[required]" /></div>
+				</div>
+				
+				<div class="formRow">
+					<label for="obrazek" class="optional">Plik (600px x 315px)</label>
+					<div class="formRight">
+						<input name="obrazek" id="obrazek" type="file">
+					</div>
+				</div>
+				
+				<div class="formSubmit"><input type="submit" name="submitSocial" id="submit" value="Zapisz" class="greyishBtn" /></div>
+			</form>
+		</div>
+		</div>
+	</div>
+</div>

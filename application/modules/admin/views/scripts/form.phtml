@@ -1,0 +1,107 @@
+<div class="title"><h1><?= $this->controlname; ?><?= $this->pagename; ?></h1></div>
+
+<div class="row-fluid">
+	<div class="span12">
+		<div class="widget">
+            <div class="tab-content">
+                <?=$this->back ;?>
+                <?=$this->info ;?>
+                <?=$this->error ;?>
+                <?php if($this->thumb){?>
+                <div class="formRow thumbsRow"><label for="miniaturka">Miniaturka</label>
+                    <div class="formRight">
+                        <?=$this->thumb ;?>
+                    </div>
+                </div>
+                <?php } ?>
+                <?=$this->form ;?>
+            </div>
+		</div>
+	</div>
+</div>
+<?php if(($this->message == 2)) {?> 
+<script type="text/javascript">
+	var noty_id = noty({timeout: 3000, text: 'Błąd w formularzu', type: 'error'});
+</script>
+<?php } ?>
+<?php if(($this->message == 1)) {?> 
+<script type="text/javascript">
+	var noty_id = noty({timeout: 3000, text: 'Zapisano!', type: 'success'});
+</script>
+<?php } ?>
+
+<?php if($this->linkform) {?> 
+<script type="text/javascript">
+!function(e){function t(e){return e=s(e,p,n),e=s(e,a)}function s(e,t,s){var p="",n=0,a=0,o=0,h=0,c=!1,u="",l="",f="",_=[],j=[],d="",g=!1;if("object"==typeof t){c=r("phpjs.strictForIn",!1),t=i(t),r("phpjs.strictForIn",c);for(p in t)t.hasOwnProperty(p)&&(_.push(p),j.push(t[p]));t=_,s=j}for(o=e.length,h=t.length,u="string"==typeof t,l="string"==typeof s,n=0;o>n;n++){if(g=!1,u){for(f=e.charAt(n),a=0;h>a;a++)if(f==t.charAt(a)){g=!0;break}}else for(a=0;h>a;a++)if(e.substr(n,t[a].length)==t[a]){g=!0,n=n+t[a].length-1;break}d+=g?l?s.charAt(a):s[a]:e.charAt(n)}return d}function i(e,t){var s,i,r,p={},n=[],a=this,o=!1,h={};switch(t){case"SORT_STRING":s=function(e,t){return a.strnatcmp(t,e)};break;case"SORT_LOCALE_STRING":var c=this.i18n_loc_get_default();s=this.php_js.i18nLocales[c].sorting;break;case"SORT_NUMERIC":s=function(e,t){return t-e};break;case"SORT_REGULAR":default:s=function(e,t){var s=parseFloat(t),i=parseFloat(e),r=s+""===t,p=i+""===e;return r&&p?s>i?1:i>s?-1:0:r&&!p?1:!r&&p?-1:t>e?1:e>t?-1:0}}for(r in e)e.hasOwnProperty(r)&&n.push(r);for(n.sort(s),this.php_js=this.php_js||{},this.php_js.ini=this.php_js.ini||{},o=this.php_js.ini["phpjs.strictForIn"]&&this.php_js.ini["phpjs.strictForIn"].local_value&&"off"!==this.php_js.ini["phpjs.strictForIn"].local_value,h=o?e:h,i=0;i<n.length;i++)r=n[i],p[r]=e[r],o&&delete e[r];for(i in p)p.hasOwnProperty(i)&&(h[i]=p[i]);return o||h}function r(e,t){var s="",i=this;this.php_js=this.php_js||{},this.php_js.ini=this.php_js.ini||{},this.php_js.ini[e]=this.php_js.ini[e]||{},s=this.php_js.ini[e].local_value;var r=function(s){"undefined"==typeof s&&(i.php_js.ini[e].local_value=[]),i.php_js.ini[e].local_value.push(t)};switch(e){case"extension":"function"==typeof this.dl&&this.dl(t),r(s,t);break;default:this.php_js.ini[e].local_value=t}return s}String.prototype.seoURL=function(s){var i=e.extend({transliterate:!0,lowercase:!1,uppercase:!1,divider:"-",append:""},s),r=this;return i.transliterate===!0&&(r=t(r)),i.lowercase===!0&&(r=r.toLowerCase()),i.uppercase===!0&&(r=r.toUpperCase()),r=r.replace(/^\s+|\s+$/g,"").replace(/[_|\s]+/g,"-").replace(/[^a-zA-z\u0400-\u04FF0-9-]+/g,"").replace(/[-]+/g,"-").replace(/^-+|-+$/g,"").replace(/[-]+/g,i.divider),r+i.append};var p="ąĄęĘóÓśŚłŁżŻźŹćĆńŃčďňřšťűőŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ",n="aAeEoOsSlLzZzZcCnNcdnrstuoSOZsozYYuAAAAAAACEEEEIIIIDNOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy",a={"ä":"ae","Ä":"AE","ö":"oe","Ö":"OE","ü":"ue","Ü":"UE","ß":"ss","ẞ":"SS"}}(jQuery);
+
+$('#nazwa').on('keyup', function() {
+	$('#link').val($(this).val().seoURL({'transliterate': true, 'lowercase': true}));
+});
+
+</script>
+<?php } ?>
+<?php if($this->tinymce) :?>
+<script type="text/javascript">
+$(document).ready(function() { 
+	tinymce();
+tinymce.create('tinymce.plugins.kCMSPlugin', {
+    createControl: function(n, cm) {
+        switch (n) {
+			case 'galleryList':
+                var glb = cm.createListBox('galerie', {
+                     title : 'Wybierz galerię',
+                     onselect : function(v) {
+                         tinymce.activeEditor.execCommand('mceInsertContent', false, '<p>[galeria=galeria]'+ v +'[/galeria]</p>');
+                     }
+                });
+
+                <?php 
+				$db = Zend_Registry::get('db');
+				$galeria = $db->fetchAll($db->select()->from('galeria')->order('nazwa ASC'));
+				foreach($galeria as $galeria) { 
+				?>
+                glb.add('<?=$galeria->nazwa;?>', '<?=$galeria->id;?>');
+				<?php } ?>
+                return glb;
+				
+			case 'sliderList':
+                var slb = cm.createListBox('slider', {
+                     title : 'Wybierz slider',
+                     onselect : function(v) {
+                         tinymce.activeEditor.execCommand('mceInsertContent', false, '<p>[galeria=slider]'+ v +'[/galeria]</p>');
+                     }
+                });
+
+                <?php 
+				$db = Zend_Registry::get('db');
+				$galeria = $db->fetchAll($db->select()->from('galeria')->order('nazwa ASC'));
+				foreach($galeria as $galeria) { 
+				?>
+                slb.add('<?=$galeria->nazwa;?>', '<?=$galeria->id;?>');
+				<?php } ?>
+                return slb;
+				
+			case 'karuzelaList':
+                var klb = cm.createListBox('karuzela', {
+                     title : 'Wybierz karuzele',
+                     onselect : function(v) {
+                         tinymce.activeEditor.execCommand('mceInsertContent', false, '<p>[galeria=karuzela]'+ v +'[/galeria]</p>');
+                     }
+                });
+
+                <?php 
+				$db = Zend_Registry::get('db');
+				$galeria = $db->fetchAll($db->select()->from('galeria')->order('nazwa ASC'));
+				foreach($galeria as $galeria) { 
+				?>
+                klb.add('<?=$galeria->nazwa;?>', '<?=$galeria->id;?>');
+				<?php } ?>
+                return klb;
+        }
+
+        return null;
+    }
+});
+	tinymce.PluginManager.add('kcmsplugin', tinymce.plugins.kCMSPlugin);
+});</script>
+<?php endif; ?>

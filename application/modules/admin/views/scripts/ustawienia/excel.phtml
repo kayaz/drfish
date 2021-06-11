@@ -1,0 +1,69 @@
+    <?php
+	
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
+
+
+		require_once 'kCMS/PHPExcel/IOFactory.php';
+	
+		//$objPHPExcel = new kCMS_PHPExcel();
+		$inputFileType = 'Excel5';
+		$inputFileName = FILES_PATH.'/inwestycje/import/awangarda-testimport.xls';
+		$path_parts = pathinfo($inputFileName);
+		$csvFileName = FILES_PATH.'/inwestycje/import/'.$path_parts['filename'].'.csv';
+		
+
+		$objReader = PHPExcel_IOFactory::createReader($inputFileType);
+		$objPHPExcelReader = $objReader->load($inputFileName);
+
+		$loadedSheetNames = $objPHPExcelReader->getSheetNames();
+
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcelReader, 'CSV');
+
+		foreach($loadedSheetNames as $sheetIndex => $loadedSheetName) {
+			$objWriter->setSheetIndex($sheetIndex);
+			$objWriter->save($csvFileName);
+		}
+		chmod($csvFileName, 0755);
+		
+		function utf8_fopen_read($fileName) { 
+			$fc = iconv('windows-1250', 'utf-8', file_get_contents($fileName)); 
+			$handle=fopen("php://memory", "rw"); 
+			fwrite($handle, $fc); 
+			fseek($handle, 0); 
+			return $handle; 
+		}
+
+		//$dataFile ='test.csv';
+		$out = array();
+		$handle = utf8_fopen_read($csvFileName, "r");
+		
+
+		
+		if ($handle) {
+			while (($line = fgets($handle)) !== false) {
+				$out[] = array($line);
+			}
+
+		}
+		print_r($out);
+		fclose($handle);
+		unset($out[0]);
+		
+				foreach($out as $row){
+
+					foreach($row as $cell){
+						
+						$room = explode(',',$cell);
+						
+						echo '<pre>';
+						echo 'test';
+						print_r($room);
+						echo '</pre>';
+					}
+
+				}
+		
+		
+    ?>

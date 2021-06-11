@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pl">
+<head>
+	<meta charset="utf-8">
+	<title>kCMS - Admin - <?=$this->header->nazwa;?></title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="kCMS">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="robots" content="noindex, nofollow">
+
+	<!-- Style -->
+    <link rel="stylesheet" href="<?=$this->adminCssUrl();?>/admin.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="<?=$this->adminCssUrl();?>/ui.css" type="text/css">
+
+	<!-- jQuery -->
+    <script src="<?=$this->jsUrl();?>/jquery.js" charset="utf-8"></script>
+    <script src="<?=$this->editorJsUrl();?>/tiny_mce_gzip.js" charset="utf-8"></script>
+	<script src="<?=$this->jsUrl();?>/validation.js" charset="utf-8"></script>
+	<script src="<?=$this->jsUrl();?>/ui.js" charset="utf-8"></script>
+	<script src="<?=$this->jsUrl();?>/pl.js" charset="utf-8"></script>
+    <script src="<?=$this->jsUrl();?>/cms.js" charset="utf-8"></script>
+</head>
+<body>
+	
+	<nav id="sidebar">
+		<div class="sidebar-content logo">
+			<a href="<?=$this->baseUrl();?>/admin/ustawienia/">kCMS</a>
+		</div>
+		<?=$this->render('menu.phtml');?>
+	</nav>
+
+	<header id="header-navbar">
+		<div class="user">
+			<ul class="none">
+				<li><span id="livedate"><?=$this->adminDate();?></span></li><li><span id="liveclock"></span></li><li><?= $this->loggedInAs(); ?></li><?php if($this->user->role == "admin") { ?><li><a title="Ustawienia" href="<?=$this->baseUrl();?>/admin/ustawienia/"><span class="fa u-ustawienia"></span> Ustawienia</a></li><?php } ?><li><a title="Idź do strony" href="<?=$this->baseUrl();?>/" target="_blank"><span class="fa u-idzdo"></span> Idź do strony</a></li><li><a title="Wyloguj" href="<?=$this->baseUrl();?>/admin/wyloguj/"><span class="fa u-wyloguj"></span> Wyloguj</a></li>
+			</ul>
+		</div>
+	</header>
+	
+	<main id="main">
+		<?=$this->layout()->content;?>
+	</main>
+	
+</body>
+</html>

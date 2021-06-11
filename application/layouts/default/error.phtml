@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>404</title>
+    <meta name="description" content="<?= $this->header['opis']; ?>">
+    <meta name="keywords" content="<?= $this->header['klucze']; ?>">
+<?php if($this->header['autor']){?>
+    <meta name="author" content="<?= $this->header['autor']; ?>">
+<?php } ?>
+<meta name="robots" content="noindex, nofollow">
+
+    <link rel="stylesheet" href="<?=$this->cssUrl();?>/bootstrap.css">
+    <link rel="stylesheet" href="<?=$this->cssUrl();?>/styles.css">
+
+	<!-- Wylaczenie numeru tel. -->
+	<meta name="format-detection" content="telephone=no">
+
+</head>
+<body id="body">
+	<div id="page">
+		<?= $this->layout()->content; ?>
+	</div>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin-ext" rel="stylesheet">
+	
+	<!-- jQuery -->
+    <script src="<?=$this->baseUrl; ?>/public/js/jquery.js" charset="utf-8"></script>
+</body>
+</html>

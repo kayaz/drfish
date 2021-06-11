@@ -1,0 +1,47 @@
+<script type="text/javascript" language="javascript">
+    //<![CDATA[
+    $(document).ready(function(){
+        $(".content").sortuj('<?=$this->baseUrl;?>/admin/menu/ustaw/co/menu_danie/');
+    });
+    //]]>
+</script>
+<div class="title"><h1><?=$this->controlname;?> - <?=$this->katalog->nazwa;?></h1></div>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="widget">
+            <div class="table-header"><form action="" id="filter-form">
+                </form></div>
+            <table width="100%" cellspacing="0" cellpadding="0" class="adm" id="sortable">
+                <thead>
+                <tr>
+                    <th width="15%">Nazwa</th>
+                    <th width="15%">Miniaturka</th>
+                    <th width="20%">Składniki</th>
+                    <th width="20%">Składniki EN</th>
+                    <th width="20%" class="center">Cena</th>
+                    <th width="10%"></th>
+                </tr>
+                </thead>
+                <tbody class="content">
+                <?php foreach($this->zdjecia as $z) : ?>
+                    <tr id="recordsArray_<?= $this->escape($z->id);?>">
+                        <td><?= $this->escape($z->nazwa);?></td>
+                        <td><img src="<?= $this->baseUrl;?>/files/menu/<?= $this->escape($z->plik);?>" alt="" style="width:100px"></td>
+                        <td><?= $this->escape($z->skladniki);?></td>
+                        <td><?= $this->escape($z->skladniki_en);?></td>
+                        <td class="center"><?= $this->escape($z->cena);?></td>
+                        <td class="right">
+                            <a href="<?= $this->baseUrl;?>/admin/menu/edytuj-danie/id/<?= $this->escape($z->id);?>/" class="actionBtn tip btnEdit" title="Edytuj danie" data-placement="top-right"></a>
+                            <a href="<?= $this->baseUrl;?>/admin/menu/usun-danie/id/<?= $this->escape($z->id);?>/" class="actionBtn tip btnDelete confirm" title="Usuń danie" data-placement="top-right"></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+            <div class="table-footer">
+                <a href="<?=$this->baseUrl;?>/admin/menu/nowe-danie/kat/<?=$this->katalog->id;?>/" class="button greyishBtn">Nowe danie</a>
+                <a href="<?= $this->baseUrl;?>/admin/menu/" class="button greyishBtn">Wróć do listy katalogów</a>
+            </div>
+        </div>
+    </div>
+</div>
