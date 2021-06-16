@@ -588,11 +588,17 @@ footer a:hover {
 		border-right: 1px solid #dfdfdf;
 		padding-right: 18px;
 	}
-	.header-contact p {
+	.fixed .header-contact {
+		padding-right: 18px
+	}
+	.header-contact p, .fixed .header-contact p {
 		line-height: 16px;
 		font-size: 12px;
 		padding: 0;
 		color: #626262;
+	}
+	.fixed .header-contact p {
+		line-height: 11px
 	}
 	nav li a:hover,
 	nav li:hover a {
@@ -602,13 +608,16 @@ footer a:hover {
 		width: 70px;
 		float: left;
 	}
-	.socials {
+	.socials, .fixed .socials {
 		position: static;
 		float: right;
 		margin-right: 16px;
 		margin-top: 20px;
 	}
-	.socials i {
+	.fixed .socials {
+		margin-top: 15px;
+	}
+	.socials i, .fixed .socials i {
 		color: var(--main-blue);
 		font-size: 27px;
 	}
@@ -637,16 +646,20 @@ footer a:hover {
 	footer p, footer a {
 		font-size: 12px;
 	}
+	.fixed .header-contact {
+		margin: 7px 0;
+	}
 	.socials {
 		display: none !important;
 	}
 	nav li a, .fixed nav li a {
 		font-size: 15px;
 	}
-	.header-contact p {
+	.header-contact p, .fixed .header-contact p {
 		line-height: 14px;
 		font-size: 10px
 	}
+
 	#logo {
 		width: 66px;
 		float: left;
