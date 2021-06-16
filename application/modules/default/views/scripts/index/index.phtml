@@ -74,7 +74,7 @@
 <?php foreach($this->dania as $danie){?>
                     <div class="row row-menu">
                         <div class="menu-thumb">
-                            <img src="<?=$this->filesUrl();?>/menu/<?=$danie->plik;?>" alt="<?=$danie->nazwa;?>">
+                           <?php if($danie->plik) {?><img src="<?=$this->filesUrl();?>/menu/<?=$danie->plik;?>" alt="<?=$danie->nazwa;?>"><?php } ?>
                         </div>
                         <div class="menu-desc">
                             <h2><?=$danie->nazwa;?></h2>
