@@ -19,7 +19,7 @@
         </div>
 
         <ul class="mb-0 list-unstyled socials d-flex">
-            <?php if($this->header->fb) {?><li class="li-facebook"><a href="<?=$this->header->fb;?>"><i class="lab la-facebook" target="_blank"></i></li><?php } ?>
+            <?php if($this->header->fb) {?><li class="li-facebook"><a href="<?=$this->header->fb;?>"><i class="lab la-facebook" target="_blank"></i></a></li><?php } ?>
             <?php if($this->header->instagram) {?><li class="li-instagram"><a href="<?=$this->header->instagram;?>"><i class="lab la-instagram" target="_blank"></i></a></li><?php } ?>
             <?php if($this->header->yt) {?><li class="li-tripadvisor"><a href="<?=$this->header->yt;?>" target="_blank"><i class="lab la-tripadvisor"></i></a></li><?php } ?>
         </ul>
@@ -32,12 +32,12 @@
 <div id="drfish">
     <div class="container container2">
         <div class="row">
-            <div class="col-5 d-flex align-items-center pr-5">
+            <div class="col-12 col-md-5 d-flex align-items-center pr-3 pr-md-5">
                 <div class="logo">
                     <img src="<?=$this->gfxUrl();?>/logo_dr_fisz_poziom.png" alt="Dr Fish">
                 </div>
             </div>
-            <div class="col-7">
+            <div class="col-12 col-md-7">
                 <h2><span>Smażalnia</span> Dr Fish</h2>
                 <p>Powstała z myślą o miłośnikach świeżych, morskich ryb i lokalnych, organicznych produktów bez konserwantów. Naszą misją jest dostarczenie na Państwa talerze świeżych ryb pełnych witamin i minerałów oraz kultywowanie rybackiej tradycji Półwyspu Helskiego.</p>
                 <p>&nbsp;</p>
@@ -61,15 +61,15 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-3 pr-5">
+        <div class="row pl-5 pr-5">
+            <div class="d-none d-md-block col-12 col-md-3 pr-3 pr-lg-5">
                 <ul class="mb-0 list-unstyled">
                     <?php foreach($this->kategorie as $kat){?>
                     <li data-cat="<?=$kat->id;?>" class="active"><?=$kat->nazwa;?> <i><?=$kat->nazwa_en;?></i></li>
                     <?php } ?>
                 </ul>
             </div>
-            <div class="col-9">
+            <div class="col-12 col-md-9">
                 <div class="container">
 <?php foreach($this->dania as $danie){?>
                     <div class="row row-menu">
@@ -100,16 +100,16 @@
 <div id="about">
     <div class="container">
         <div class="row">
-            <div class="col-5">
-                <img src="<?=$this->gfxUrl();?>/rybacy.jpg" alt="Benedykt i Małgorzata Formella" class="mb-5">
+            <div class="col-12 col-md-5">
+                <img src="<?=$this->gfxUrl();?>/rybacy.jpg" alt="Benedykt i Małgorzata Formella" class="mb-3 mb-sm-5">
             </div>
-            <div class="col-7 pl-5">
+            <div class="col-12 col-md-7 pl-3 pl-md-5">
                 <h2>Formellowie</h2>
                 <p>Benedykt i Małgorzata Formella mieszkają na Helu już od wielu lat. Chociaż oboje są z wykształcenia matematykami, swoje życie związali z morzem. Ich kuter co noc wypływa na morze, aby wraz ze wschodem słońca wrócić do portu z sieciami pełnymi ryb.</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-5">
+            <div class="col-12 col-md-5 pt-4 pt-md-0">
                 <p>Oprócz połowu ryb, Formellowie zajmują się również wydobyciem bursztynu. Ich umiejętności w tej dziedzinie zostały docenione w popularnym programie “Złoto Bałtyku”, który można obejrzeć na Discovery Channel.</p>
             </div>
         </div>
@@ -120,7 +120,7 @@
     <img src="<?=$this->gfxUrl();?>/shape-bottom.png" alt="Fale" class="shape-bottom">
     <div class="container">
         <div class="row">
-            <div class="col-4">
+            <div class="col-12 col-md-4">
                 <h3>Kontakt</h3>
                 <div class="contact-text">
                     <p>Kuter Dr Fish</p>
@@ -129,7 +129,7 @@
                 </div>
                 <img src="<?=$this->gfxUrl();?>/arrow.png" alt="Kontakt z nami">
             </div>
-            <div class="col-8 text-right">
+            <div class="col-12 col-md-8 text-right">
                 <div class="iframe">
                     <p>Odwiedź nas koniecznie!</p>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10993.365262291747!2d18.79653237672258!3d54.602753105157106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd042a4487962f%3A0xb02719c3eb1615c1!2sKuracyjna%201%2C%2084-150%20Hel!5e0!3m2!1spl!2spl!4v1623363254887!5m2!1spl!2spl" width="100%" height="450" allowfullscreen="" loading="lazy"></iframe>

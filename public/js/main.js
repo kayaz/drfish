@@ -13,23 +13,23 @@ function makeWidget(){$('body').append('<div id="viewport" style="position:fixed
 function process_responseIcons(response, formType){var frm=$("#eventForm3"); var i; for (i in response){frm.find('[name="' + i + '"]').val(response[i]);}}
 function process_responseGfx(response, formType){var frm=$("#eventForm5"); var i; for (i in response){frm.find('[name="' + i + '"]').val(response[i]);}}
 
-makeWidget();
+//makeWidget();
 
 $(document).ready(function(){
 // Menu
 	const aboveHeight = $('header').outerHeight();
 	$(window).scroll(function(){
-		if ($(window).scrollTop() > aboveHeight && !$('header').hasClass('fixed')){
+		if ($(window).scrollTop() > 80 && !$('header').hasClass('fixed')){
 			$('header').addClass('fixed');
 			$('header').animate({'top': '0px'}, {duration: 500});
 		}
-		if ($(window).scrollTop() < aboveHeight && $('header').hasClass('fixed')){
+		if ($(window).scrollTop() < 80 && $('header').hasClass('fixed')){
 			$('header').removeClass('fixed');
 			$('header').removeAttr('style');
 		}
 	});
 
-	if ($(window).scrollTop() > aboveHeight && !$('header').hasClass('fixed')){
+	if ($(window).scrollTop() > 80 && !$('header').hasClass('fixed')){
 		$('header').addClass('fixed');
 		$('header').animate({'top': '0px'}, {duration: 300});
 	}

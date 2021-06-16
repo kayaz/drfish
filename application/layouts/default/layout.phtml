@@ -80,9 +80,5 @@
 	</script>
 
 	<?= $this->header->footer; ?>
-
-    <?php if(Zend_Auth::getInstance()->hasIdentity()){?>
-        <?=$this->render('inline/inline.phtml') ?>
-    <?php } ?>
 </body>
 </html>
