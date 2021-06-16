@@ -437,6 +437,9 @@ footer a:hover {
 	.menu-desc {
 		width: 421px
 	}
+	.menu-cena b {
+		font-size: 24px
+	}
 }
 
 @media (max-width: 1199.98px) {
